@@ -14,12 +14,27 @@ dependencies:
 
   cupertino_icons: ^1.0.6
 
+  # common
+  page_transition: ^2.1.0
+  lottie: ^2.7.0
+  shake: ^2.2.0
+  webview_flutter: ^4.8.0
+  flutter_linkify: ^6.0.0
+  flutter_parsed_text: ^2.2.1
+
   # network
   http: ^0.13.3
   http_interceptor: ^1.0.2
   logger: ^1.1.0
   dartz: ^0.10.1
+  cached_network_image: ^3.3.1
 
+  # file
+  image_picker: ^1.1.1
+
+  # speech
+  speech_to_text: ^6.6.1
+  flutter_tts: ^4.0.2
 
   # db
   hive: ^2.2.3
@@ -28,6 +43,11 @@ dependencies:
 
   # getX
   get: ^4.6.6
+
+  # firebase
+  firebase_core: ^3.1.0
+  firebase_auth: ^5.1.0
+  google_sign_in: ^6.2.1
 
 
 dev_dependencies:
