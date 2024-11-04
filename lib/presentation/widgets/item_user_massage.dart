@@ -12,7 +12,7 @@ Widget itemOfUserMessage(MessageModel message) {
         padding:
         const EdgeInsets.only(top: 10, bottom: 10, left: 16, right: 16),
         decoration: const BoxDecoration(
-          color: Color.fromRGBO(38, 39, 42, 1),
+          color: Colors.black54,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25),
             bottomLeft: Radius.circular(25),
@@ -27,7 +27,7 @@ Widget itemOfUserMessage(MessageModel message) {
               Text(
                 message.message!,
                 style: const TextStyle(
-                  color: Color.fromRGBO(173, 173, 176, 1),
+                  color: Colors.white,
                   fontSize: 16,
                 ),
               ),

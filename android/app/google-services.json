@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "676420517900",
+    "project_id": "marblai",
+    "storage_bucket": "marblai.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676420517900:android:9a15dd34d3af56e4352e29",
+        "android_client_info": {
+          "package_name": "com.example.pmproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676420517900-tei51js8908a9j7cubrbgehgfv8uolh6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pmproject",
+            "certificate_hash": "8316348bdfee185f2691ec529ea8ee6518abaa18"
+          }
+        },
+        {
+          "client_id": "676420517900-dl7u7fje5e7129gfa9emc9jtiqn26slv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG_f29okp5yiGAxiBzdxEa0m83wvD2gRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676420517900-dl7u7fje5e7129gfa9emc9jtiqn26slv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

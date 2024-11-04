@@ -7,8 +7,10 @@ import 'package:pmproject/data/models/message_model.dart';
 import 'package:pmproject/domain/usecases/marbl_text_and_image_usecase.dart';
 import 'package:pmproject/domain/usecases/marbl_text_only_usecase.dart';
 import 'package:pmproject/presentation/widgets/generic_dialog.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
+import '../../core/services/auth_service.dart';
 import '../../core/services/utils_service.dart';
 import '../../data/repositories/marbl_talk_repository_impl.dart';
 import '../pages/intranet_page.dart';
@@ -19,7 +21,7 @@ class HomeController extends GetxController{
   MarblTextAndImageUseCase textAndImageUseCase =
   MarblTextAndImageUseCase(MarblTalkRepositoryImpl());
 
-  TextEditingController textEditingController = TextEditingController();
+  TextEditingController textController = TextEditingController();
   final FocusNode textFieldFocusNode = FocusNode();
 
   String? pickedImage;
@@ -42,8 +44,8 @@ class HomeController extends GetxController{
       }
     );
     if(result){
-/*      await AuthService.signOutFromGoogle();
-      callStarterPage(context);*/
+      await AuthService.signOutFromGoogle();
+      // callStarterPage(context);
     }
   }
 
@@ -92,7 +94,7 @@ class HomeController extends GetxController{
       updateMessages(
           MessageModel(isMine: true, message: text, base64: pickedImage),true);
     }
-    textEditingController.clear();
+    textController.clear();
     onRemovedImage();
   }
 
@@ -127,23 +129,23 @@ class HomeController extends GetxController{
     update();
   }
 
-  // void startSTT() async {
-  //   await speechToText.listen(onResult: onSTTResult);
-  //   update();
-  // }
+  void startSTT() async {
+    await speechToText.listen(onResult: onSTTResult);
+    update();
+  }
 
   void stopSTT() async {
     await speechToText.stop();
     update();
   }
 
-  // void onSTTResult(SpeechRecognitionResult result) {
-  //   if (result.finalResult) {
-  //     var words = result.recognizedWords;
-  //     onSendPressed(words);
-  //     LogService.i(words);
-  //   }
-  // }
+  void onSTTResult(SpeechRecognitionResult result) {
+    if (result.finalResult) {
+      var words = result.recognizedWords;
+      onSendPressed(words);
+      LogService.i(words);
+    }
+  }
 
   Future speakTTS(String text) async{
     var result = await flutterTts.speak(text);

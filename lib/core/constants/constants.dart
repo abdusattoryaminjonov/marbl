@@ -1,0 +1,2 @@
+const welcomingMessage = "Hi! I'm Marble, your virtual assistant. I'm here to help you with questions, creative ideas, and tasks of all kinds—whether it's explaining something, brainstorming, or helping you solve problems. Just let me know what you need!";
+const shakeMessage = "Hey, I'm here!";
