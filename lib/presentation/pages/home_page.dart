@@ -107,23 +107,23 @@ class _HomePageState extends State<HomePage> {
                                 padding: const EdgeInsets.only(top: 10,right: 16),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(20.0),
-                                  // child: CachedNetworkImage(
-                                  //   height: 40,
-                                  //   width: 40,
-                                  //   imageUrl: AuthService.currentUser().photoURL!,
-                                  //   placeholder: (context,url) => const Image(image: AssetImage('assets/images/user_icon.png'),
-                                  //     height: 70,
-                                  //     width: 70,
-                                  //     fit: BoxFit.cover,
-                                  //   ),
-                                  //   errorWidget: (context, url, error) => const Image(
-                                  //     image: AssetImage(
-                                  //         "assets/images/user_icon.png"),
-                                  //     width: 70,
-                                  //     height: 70,
-                                  //     fit: BoxFit.cover,
-                                  //   ),
-                                  // ),
+                                  child: CachedNetworkImage(
+                                    height: 40,
+                                    width: 40,
+                                    imageUrl: AuthService.currentUser().photoURL!,
+                                    placeholder: (context,url) => const Image(image: AssetImage('assets/images/user_icon.png'),
+                                      height: 70,
+                                      width: 70,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    errorWidget: (context, url, error) => const Image(
+                                      image: AssetImage(
+                                          "assets/images/user_icon.png"),
+                                      width: 70,
+                                      height: 70,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
                               ),
                             )
@@ -219,9 +219,9 @@ class _HomePageState extends State<HomePage> {
                               IconButton(
                                 padding: EdgeInsets.zero,
                                 onPressed: () {
-                                  // homeController.speechToText.isNotListening
-                                  //     ? homeController.startSTT()
-                                  //     : homeController.stopSTT();
+                                  homeController.speechToText.isNotListening
+                                      ? homeController.startSTT()
+                                      : homeController.stopSTT();
                                 },
                                 icon: const Icon(
                                   Icons.mic,

@@ -10,10 +10,10 @@ import 'package:pmproject/presentation/widgets/generic_dialog.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
-import '../../core/services/auth_service.dart';
 import '../../core/services/utils_service.dart';
 import '../../data/repositories/marbl_talk_repository_impl.dart';
 import '../pages/intranet_page.dart';
+import '../pages/starter_page.dart';
 
 class HomeController extends GetxController{
   MarblTextOnlyUseCase textOnlyUseCase =
@@ -32,6 +32,12 @@ class HomeController extends GetxController{
   FlutterTts flutterTts = FlutterTts();
 
   bool isLoading = false;
+  bool isSpeaking = false;
+
+  void toggleSpeakingState() {
+    isSpeaking = !isSpeaking;
+    update();
+  }
 
   logOutDialog(BuildContext context) async{
     bool result = await showGenericDialog(
@@ -43,11 +49,18 @@ class HomeController extends GetxController{
         'Confirm':true,
       }
     );
-    if(result){
-      await AuthService.signOutFromGoogle();
-      // callStarterPage(context);
-    }
+    LogService.i("Log Out Auth");
+
+    // if(result){
+    //   await AuthService.signOutFromGoogle();
+    //   callStarterPage(context);
+    // }
   }
+  callStarterPage(BuildContext context) {
+    Get.offNamed(StarterPage.id);
+    // Navigator.pushReplacementNamed(context, StarterPage.id);
+  }
+
 
   uploadData(){
     var data = NoSqlService.fetchNoSqlCard();
@@ -125,6 +138,7 @@ class HomeController extends GetxController{
 
   /// Speech to Text
   void initSTT() async {
+    await flutterTts.setLanguage("en-US");
     speechEnabled = await speechToText.initialize();
     update();
   }
@@ -150,6 +164,11 @@ class HomeController extends GetxController{
   Future speakTTS(String text) async{
     var result = await flutterTts.speak(text);
     // if (result == 1) setState(() => ttsState = TtsState.playing);
+  }
+
+  Future<void> pauseTTS() async {
+    await flutterTts.pause();
+    isSpeaking = false;
   }
 
   Future stopTTS() async{

@@ -37,10 +37,15 @@ Widget itemOfGeminiMessage(MessageModel message, HomeController homeController,B
                 ),
                 GestureDetector(
                   onTap: () {
-                    homeController.speakTTS(message.message!);
+                    if (homeController.isSpeaking) {
+                      homeController.pauseTTS();
+                    } else {
+                      homeController.speakTTS(message.message!);
+                    }
+                    homeController.toggleSpeakingState();
                   },
-                  child: const Icon(
-                    Icons.volume_up,
+                  child: Icon(
+                    homeController.isSpeaking ? Icons.pause : Icons.volume_up,
                     color: Colors.black,
                   ),
                 )
@@ -88,11 +93,11 @@ Widget itemOfGeminiMessage(MessageModel message, HomeController homeController,B
             )
           ],
         ),
-        homeController.isLoading ?  Container(
-          width: 50,
-          height: 50,
-          child: Lottie.asset('assets/lotties/loading.json'),
-        ) : const SizedBox.shrink()
+        // homeController.isLoading ?  Container(
+        //   width: 50,
+        //   height: 50,
+        //   child: Lottie.asset('assets/lotties/loading.json'),
+        // ) : const SizedBox.shrink()
       ],
     ),
   );

@@ -8,6 +8,8 @@ import '../../core/constants/constants.dart';
 import '../controllers/starter_controller.dart';
 
 class StarterPage extends StatefulWidget {
+  static const String id = 'starter_page';
+
   const StarterPage({super.key});
 
   @override
@@ -61,70 +63,74 @@ class _StarterPageState extends State<StarterPage> {
     checkInternetConnection(context);
 
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.only(bottom: 20,left: 20,right: 20),
-        child: Column(
-          children: [
-             Expanded(
+      body: GetBuilder<StarterController>(
+          builder:(_){
+            return Container(
+              padding: const EdgeInsets.only(bottom: 20,left: 20,right: 20),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    child: Lottie.asset("assets/lotties/robot.json"),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(left: 20,right: 20),
-                    child: AnimatedTextKit(
-                      repeatForever: false,
-                      animatedTexts: [
-                        TyperAnimatedText(
-                          welcomingMessage,
-                          textStyle: const TextStyle(
-                            fontSize: 15,
-                            fontStyle: FontStyle.normal,
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Lottie.asset("assets/lotties/robot.json"),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(left: 20,right: 20),
+                          child: AnimatedTextKit(
+                            repeatForever: false,
+                            animatedTexts: [
+                              TyperAnimatedText(
+                                welcomingMessage,
+                                textStyle: const TextStyle(
+                                  fontSize: 15,
+                                  fontStyle: FontStyle.normal,
+                                ),
+                                speed: const Duration(milliseconds: 65),
+                              ),
+                            ],
                           ),
-                          speed: const Duration(milliseconds: 65),
                         ),
                       ],
                     ),
                   ),
+
+                  GestureDetector(
+                    onTap: () {
+                      starterController.callGoogleSignIn();
+                    },
+                    child: Container(
+                        height: 55,
+                        margin: const EdgeInsets.only(top: 15),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          border: Border.all(
+                            color: Colors.black, // Set your border color here
+                            width: 2.0, // Set the border width
+                          ),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Open Chat",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Icon(
+                              Icons.navigate_next,
+                              color: Colors.black,
+                            ),
+                          ],
+                        )),
+                  ),
                 ],
               ),
-            ),
-
-            GestureDetector(
-              onTap: () {
-                starterController.callGoogleSignIn();
-              },
-              child: Container(
-                  height: 55,
-                  margin: const EdgeInsets.only(top: 15),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    border: Border.all(
-                      color: Colors.black, // Set your border color here
-                      width: 2.0, // Set the border width
-                    ),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Open Chat",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                        ),
-                      ),
-                      Icon(
-                        Icons.navigate_next,
-                        color: Colors.black,
-                      ),
-                    ],
-                  )),
-            ),
-          ],
-        ),
+            );
+          }
       ),
     );
   }
